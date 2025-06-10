@@ -1,7 +1,7 @@
 
 import { deletePoints, LinearControlPoint } from "../../../utils/linear";
 import { clamp } from "../../marker-editor/utils/math";
-import { ArrowUpRightFromSquare, Clipboard, SlidersHorizontal, XIcon } from "lucide-react";
+import { ArrowUpRightFromSquare, SlidersHorizontal, XIcon } from "lucide-react";
 import { DropDownMenu } from "../../inputs/drop-down";
 import { PresetMenuItem } from "../../inputs/types";
 import { IconButton } from "../../inputs/button";

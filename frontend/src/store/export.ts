@@ -1,7 +1,6 @@
 import { Getter } from "jotai";
 import { activeParamIdAtom, contrastGridReferenceColorsAtom, getApproximateGradientLabArrayAtom, paramAtomFamily, paramIdsAtom } from ".";
 import { ShadeGeneratorParameter } from "./types";
-import { OKLab, serialize } from "@texel/color";
 
 export const exportGradientData = (get: Getter) => {
   // Get all parameters
