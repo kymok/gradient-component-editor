@@ -1,1 +1,1 @@
-# gradient-component-editor
+# gradient-editor

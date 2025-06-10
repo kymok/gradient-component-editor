@@ -1,0 +1,1 @@
+export type Gamut = 'srgb' | 'display-p3';
