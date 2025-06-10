@@ -4,6 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/gradient-component-editor/',
   plugins: [
     tailwindcss(),
     react({
