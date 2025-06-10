@@ -47,7 +47,7 @@ export const AddColorsDialog = ({ open, onOpenChange }: { open: boolean, onOpenC
                   <textarea
                     name="cssText"
                     placeholder="Paste CSS code here..."
-                    className="p-2 border border-border-primary rounded-md w-full h-[200px] resize-y"
+                    className="p-2 border border-border-primary rounded-md w-full h-[200px] text-text-primary resize-y"
                     value={text}
                     onChange={(e) => setText(e.target.value)}
                   />
