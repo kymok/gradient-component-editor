@@ -22,14 +22,17 @@ export const IconButton = (props: React.ComponentProps<"button"> & {
             "hover:bg-button-danger-bg-hover",
             "focus-visible:outline-button-danger-icon",
           ],
+          props.disabled && [
+            "bg-button-disabled-bg",
+            "text-button-disabled-text",
+            "hover:bg-button-disabled-bg",
+            "focus-visible:outline-button-disabled-icon",
+          ],
         )
       }
       disabled={props.disabled}
     >
-      <div className={cn(
-        "flex justify-center items-center w-4 h-4 text-button-default-icon",
-        props.variant === "danger" && "text-button-danger-icon",
-      )}>
+      <div className="flex justify-center items-center w-4 h-4">
         {props.icon}
       </div>
       {props.label}

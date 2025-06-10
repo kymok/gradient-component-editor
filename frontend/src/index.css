@@ -48,6 +48,10 @@
   --color-button-danger-text: var(--color-red-600);
   --color-button-danger-icon: var(--color-red-400);
 
+  --color-button-disabled-bg: var(--color-neutral-50);
+  --color-button-disabled-text: var(--color-neutral-400);
+  --color-button-disabled-icon: var(--color-neutral-400);
+
   --color-control-default-bg: var(--color-white);
   --color-control-default-bg-hover: var(--color-neutral-200);
   --color-control-default-border: var(--color-neutral-700);
@@ -80,7 +84,6 @@
     --color-border-primary: var(--color-neutral-700);
     --color-border-primary-alpha: rgba(255, 255, 255, 0.2);
 
-
     --color-button-default-bg: var(--color-neutral-800);
     --color-button-default-bg-hover: var(--color-neutral-700);
     --color-button-default-text: var(--color-neutral-100);
@@ -97,6 +100,10 @@
 
     --color-surface-background: var(--color-neutral-900);
     --color-surface-hover: var(--color-neutral-800);
+
+    --color-button-disabled-bg: var(--color-neutral-950);
+    --color-button-disabled-text: var(--color-neutral-500);
+    --color-button-disabled-icon: var(--color-neutral-500);
 
     --color-control-default-bg: var(--color-neutral-900);
     --color-control-default-bg-hover: var(--color-neutral-800);
