@@ -10,6 +10,20 @@ import { AccordionSection } from "../../layout";
 
 const SAMPLER_HEIGHT = 64;
 
+const SamplerHelpContent = () => {
+  return (
+    <div className="flex flex-col gap-2 max-w-sm">
+      <p>
+        The Sampler allows you to create and edit a set of color samples for a specific parameter.
+        You can add, remove, and adjust the colors in the sample set.
+      </p>
+      <p>
+        Use the toolbar to manage your samples, and click on the gradient backdrop to select colors.
+      </p>
+    </div>
+  );
+}
+
 export const Sampler = () => {
   const [selectedPointIds, setSelectedPointIds] = useState<string[]>([]);
   const activeParamId = useAtomValue(activeParamIdAtom);
@@ -18,7 +32,8 @@ export const Sampler = () => {
   const gamut = useAtomValue(gamutAtom);
 
   return (
-    <AccordionSection title="Sampler" defaultOpen={true}>
+    <AccordionSection title="Sampler" defaultOpen={true} helpContent={<SamplerHelpContent />}>
+      {/* Sampler Editor */}
       <div className="flex flex-col gap-1 w-full h-full">
         {/* Editor */}
         <div className="relative w-full" style={{ height: SAMPLER_HEIGHT }}>

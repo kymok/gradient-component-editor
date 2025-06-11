@@ -5,7 +5,7 @@ import { useAtomValue, useSetAtom } from "jotai";
 import { activeParamIdAtom, getReferenceColorsAtom, setReferenceColorsAtom } from "../../../store";
 import { MatchingMethod, ReferenceInternal } from "../../../store/types";
 import { Table } from "../../inputs/table";
-import { Toolbar } from "../../inputs";
+import { Toolbar } from "../../inputs/toolbar";
 import { BrushCleaning, ListPlus, Plus } from "lucide-react";
 import { IconButton } from "../../inputs/button";
 import { v4 as uuidv4 } from "uuid";

@@ -4,7 +4,7 @@ import { ReferenceTableRow } from "./row";
 import { useAtomValue, useSetAtom } from "jotai";
 import { contrastGridReferenceColorsAtom } from "../../../store";
 import { Table } from "../../inputs/table";
-import { Toolbar } from "../../inputs";
+import { Toolbar } from "../../inputs/toolbar";
 import { BrushCleaning, ListPlus, Plus } from "lucide-react";
 import { IconButton } from "../../inputs/button";
 import { AddColorsDialog } from "./add-colors";

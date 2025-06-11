@@ -1,4 +1,4 @@
-import { Toolbar } from '../inputs';
+import { Toolbar } from '../inputs/toolbar';
 import { useAtom } from 'jotai';
 import { gamutAtom, themeAtom } from '../../store';
 import { Select } from '../inputs/select';

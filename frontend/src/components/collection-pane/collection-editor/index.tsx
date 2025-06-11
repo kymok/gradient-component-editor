@@ -1,7 +1,7 @@
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { activeParamIdAtom, getAllGradientSwatchesAtom, getGradientSwatchesAtom, paramAtomFamily, paramIdsAtom, setParamAtom } from '../../../store';
 import { SwatchView } from '../../swatch-view';
-import { Toolbar } from '../../inputs';
+import { Toolbar } from '../../inputs/toolbar';
 import { IconButton } from '../../inputs/button';
 import { ArrowUpRightFromSquare, ChevronsUpDown, Plus, X } from 'lucide-react';
 import { v4 as uuidv4 } from 'uuid';
