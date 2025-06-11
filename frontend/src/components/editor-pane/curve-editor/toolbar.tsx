@@ -4,7 +4,7 @@ import { clamp } from "../../marker-editor/utils/math";
 import { Rect } from "../../marker-editor/utils/canvas";
 import { BrushCleaning, XIcon } from "lucide-react";
 import { IconButton } from "../../inputs/button";
-import { Toolbar as ToolbarContainer } from "../../inputs";
+import { Toolbar as ToolbarContainer } from "../../inputs/toolbar";
 import { ParamInput } from "../../inputs/input";
 
 const PRECISION = 3;

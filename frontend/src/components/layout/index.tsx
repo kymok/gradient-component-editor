@@ -1,5 +1,6 @@
-import { ChevronDown, ChevronRight } from "lucide-react";
+import { ChevronDown, ChevronRight, HelpCircle } from "lucide-react";
 import { useState } from "react";
+import { Popover } from "../inputs/popover";
 
 export const PaneHeader = (props: React.ComponentProps<"div">) => {
   return (
@@ -17,10 +18,22 @@ const SectionHeader = (props: React.ComponentProps<"div">) => {
   );
 }
 
-export const Section = (props: React.ComponentProps<"div"> & { title: string }) => {
+export const Section = (props: React.ComponentProps<"div"> & {
+  title: string;
+  helpContent?: React.ReactNode;
+}) => {
   return (
     <div className="flex flex-col gap-2 w-full">
-      <SectionHeader>{props.title}</SectionHeader>
+      <div className="flex flex-row items-center gap-2 m-0 p-0">
+        <SectionHeader>{props.title}</SectionHeader>
+        {props.helpContent && (
+          <Popover
+            icon={<HelpCircle />}
+          >
+            {props.helpContent}
+          </Popover>
+        )}
+      </div>
       {props.children}
     </div>
   );
@@ -30,12 +43,13 @@ export const AccordionSection = (
   props: React.ComponentProps<"div"> & {
     title: string;
     defaultOpen: boolean;
+    helpContent?: React.ReactNode;
   }
 ) => {
   const [showContent, setShowContent] = useState<boolean>(props.defaultOpen);
   return (
     <div className="flex flex-col gap-2 w-full">
-      <div className="m-0 ml-[-16px] p-0">
+      <div className="flex flex-row items-center gap-2 m-0 ml-[-16px] p-0">
         <button
           className="flex items-center cursor-pointer"
           onClick={() => setShowContent(!showContent)}
@@ -45,8 +59,19 @@ export const AccordionSection = (
           </div>
           <SectionHeader>{props.title}</SectionHeader>
         </button>
+        {props.helpContent && (
+          <Popover
+            icon={<HelpCircle />}
+          >
+            {props.helpContent}
+          </Popover>
+        )}
       </div>
-      {showContent && props.children}
+      {showContent && (
+        <div className="relative">
+          {props.children}
+        </div>
+      )}
     </div>
   );
 }

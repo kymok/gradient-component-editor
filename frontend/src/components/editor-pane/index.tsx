@@ -24,6 +24,19 @@ export const EditorPane = () => {
   );
 }
 
+const CurveEditorHelpContent = () => {
+  return (
+    <div className="flex flex-col gap-2 max-w-sm text-sm">
+      <p>
+        Curve editors allow you to adjust each component of the gradient.
+      </p>
+      <p>
+        Click between control points to add a new point, or drag points to reposition them. Double-click to toggle between anchor and smooth points. Use the "Clear" button to remove all control points.
+      </p>
+    </div>
+  );
+}
+
 const Lightness = () => {
   const activeParamId = useAtomValue(activeParamIdAtom);
   const [lightnessPoints, setLightnessPoints] = useAtom(lightnessPointsAtom(activeParamId));
@@ -39,7 +52,7 @@ const Lightness = () => {
   };
   const [rect, setRect] = useState<Rect>(defaultRect);
   return (
-    <AccordionSection title="Lightness" defaultOpen={true}>
+    <AccordionSection title="Lightness" defaultOpen={true} helpContent={<CurveEditorHelpContent />}>
       <CurveEditor
         controlPoints={lightnessPoints}
         setControlPoints={setLightnessPoints}
@@ -110,7 +123,7 @@ const Chroma = () => {
   };
   const [rect, setRect] = useState<Rect>(defaultRect);
   return (
-    <AccordionSection title="Chroma" defaultOpen={true}>
+    <AccordionSection title="Chroma" defaultOpen={true} helpContent={<CurveEditorHelpContent />}>
       <CurveEditor
         controlPoints={chromaPoints}
         setControlPoints={setChromaPoints}
@@ -181,7 +194,7 @@ const Hue = () => {
   };
   const [rect, setRect] = useState<Rect>(defaultRect);
   return (
-    <AccordionSection title="Hue" defaultOpen={true}>
+    <AccordionSection title="Hue" defaultOpen={true} helpContent={<CurveEditorHelpContent />}>
       <CurveEditor
         controlPoints={huePoints}
         setControlPoints={setHuePoints}

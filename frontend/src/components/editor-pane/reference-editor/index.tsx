@@ -5,13 +5,33 @@ import { useAtomValue, useSetAtom } from "jotai";
 import { activeParamIdAtom, getReferenceColorsAtom, setReferenceColorsAtom } from "../../../store";
 import { MatchingMethod, ReferenceInternal } from "../../../store/types";
 import { Table } from "../../inputs/table";
-import { Toolbar } from "../../inputs";
+import { Toolbar } from "../../inputs/toolbar";
 import { BrushCleaning, ListPlus, Plus } from "lucide-react";
 import { IconButton } from "../../inputs/button";
 import { v4 as uuidv4 } from "uuid";
 import { AddColorsDialog } from "./add-colors";
 import { useState } from "react";
 import { AccordionSection } from "../../layout";
+
+const HelpContent = () => {
+  return (
+    <div className="flex flex-col gap-2 max-w-sm text-sm">
+      <p>
+        References are colors that you can use to compare against the gradient. You can add, remove, and reorder references.
+      </p>
+      <p>
+        Enter CSS color values (e.g., <code>rgb(255 0 0)</code>, <code>#ff0000</code>) to specify the reference colors.
+      </p>
+      <p>
+        Use matching methods to specify how the gradient should relate to the reference color. The available methods are:
+      </p>
+      <ul className="pl-5 list-disc">
+        <li><strong>ΔL:</strong> Minimize lightness difference. Suitable for most use cases.</li>
+        <li><strong>ΔE:</strong> Minimize color difference.</li>
+      </ul>
+    </div>
+  );
+}
 
 export const References = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -54,7 +74,7 @@ export const References = () => {
   };
 
   return (
-    <AccordionSection title="References" defaultOpen={false}>
+    <AccordionSection title="References" defaultOpen={false} helpContent={<HelpContent />}>
       <div className="flex flex-col gap-1 w-full">
         <DndContext
           sensors={sensors}

@@ -27,6 +27,7 @@
 
   --color-text-primary: var(--color-neutral-900);
   --color-text-secondary: var(--color-neutral-500);
+  --color-text-tertiary: var(--color-neutral-400);
   --color-text-disabled: var(--color-neutral-400);
   --color-text-error: var(--color-red-600);
 

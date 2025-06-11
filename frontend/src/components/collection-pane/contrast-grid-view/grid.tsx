@@ -2,7 +2,7 @@ import { useAtomValue } from "jotai";
 import { Fragment, useState } from "react";
 import { activeParamIdAtom, getGradientSwatchesAtom, contrastGridReferenceColorsAtom } from "../../../store";
 import { Checkbox } from "../../inputs/checkbox";
-import { Toolbar } from "../../inputs";
+import { Toolbar } from "../../inputs/toolbar";
 
 // Contrast ratio thresholds for WCAG standards
 const WCAG = {

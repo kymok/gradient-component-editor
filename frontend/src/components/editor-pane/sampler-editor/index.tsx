@@ -10,6 +10,19 @@ import { AccordionSection } from "../../layout";
 
 const SAMPLER_HEIGHT = 64;
 
+const SamplerHelpContent = () => {
+  return (
+    <div className="flex flex-col gap-2 max-w-sm text-sm">
+      <p>
+        The sampler samples the gradient into swatches at specified locations.
+      </p>
+      <p>
+        Click between markers to add a new marker, or drag markers to reposition them. Doubleclick to toggle between absolute location and interpolated location.
+      </p>
+    </div>
+  );
+}
+
 export const Sampler = () => {
   const [selectedPointIds, setSelectedPointIds] = useState<string[]>([]);
   const activeParamId = useAtomValue(activeParamIdAtom);
@@ -18,7 +31,8 @@ export const Sampler = () => {
   const gamut = useAtomValue(gamutAtom);
 
   return (
-    <AccordionSection title="Sampler" defaultOpen={true}>
+    <AccordionSection title="Sampler" defaultOpen={true} helpContent={<SamplerHelpContent />}>
+      {/* Sampler Editor */}
       <div className="flex flex-col gap-1 w-full h-full">
         {/* Editor */}
         <div className="relative w-full" style={{ height: SAMPLER_HEIGHT }}>
