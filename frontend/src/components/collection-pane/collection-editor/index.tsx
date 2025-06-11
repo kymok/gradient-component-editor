@@ -90,6 +90,19 @@ const SortableItem = ({ id }: { id: string }) => {
   );
 };
 
+const HelpContent = () => {
+  return (
+    <div className="flex flex-col gap-2 max-w-sm text-sm">
+      <p>
+        The collection editor allows you to manage your gradients.
+      </p>
+      <p>
+        Click on a color to copy to clipboard, or select swatch set to make the gradient active. You can also export swatches in various formats. Drag to reorder swatch sets.
+      </p>
+    </div>
+  );
+}
+
 export const Collection = () => {
   const [paramIds, setParamIds] = useAtom(paramIdsAtom);
   const [activeParamId, setActiveParamId] = useAtom(activeParamIdAtom);
@@ -136,7 +149,7 @@ export const Collection = () => {
   const canDelete = paramIds.length > 1;
 
   return (
-    <Section title="Swatches">
+    <Section title="Swatches" helpContent={<HelpContent />}>
       <div className={"flex flex-col gap-2"}>
         <div className={"flex flex-col"}>
           <DndContext

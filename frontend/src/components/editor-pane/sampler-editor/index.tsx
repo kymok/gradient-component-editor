@@ -12,13 +12,12 @@ const SAMPLER_HEIGHT = 64;
 
 const SamplerHelpContent = () => {
   return (
-    <div className="flex flex-col gap-2 max-w-sm">
+    <div className="flex flex-col gap-2 max-w-sm text-sm">
       <p>
-        The Sampler allows you to create and edit a set of color samples for a specific parameter.
-        You can add, remove, and adjust the colors in the sample set.
+        The sampler samples the gradient into swatches at specified locations.
       </p>
       <p>
-        Use the toolbar to manage your samples, and click on the gradient backdrop to select colors.
+        Click between markers to add a new marker, or drag markers to reposition them. Doubleclick to toggle between absolute location and interpolated location.
       </p>
     </div>
   );

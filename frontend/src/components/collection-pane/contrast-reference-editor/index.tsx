@@ -11,6 +11,19 @@ import { AddColorsDialog } from "./add-colors";
 import { useState } from "react";
 import { AccordionSection } from "../../layout";
 
+const HelpContent = () => {
+  return (
+    <div className="flex flex-col gap-2 max-w-sm text-sm">
+      <p>
+        Contrast references are colors that you can use to compare against the gradient swatches. You can add, remove, and reorder references.
+      </p>
+      <p>
+        Enter CSS color values (e.g., <code>rgb(255 0 0)</code>, <code>#ff0000</code>) to specify the reference colors.
+      </p>
+    </div>
+  );
+}
+
 export const ContrastReferences = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const references = useAtomValue(contrastGridReferenceColorsAtom);
@@ -50,7 +63,7 @@ export const ContrastReferences = () => {
   };
 
   return (
-    <AccordionSection title="Contrast References" defaultOpen={false}>
+    <AccordionSection title="Contrast References" defaultOpen={false} helpContent={<HelpContent />}>
       <div className="flex flex-col gap-1 w-[512px]">
         <DndContext
           sensors={sensors}

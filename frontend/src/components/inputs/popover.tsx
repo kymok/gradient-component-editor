@@ -39,7 +39,7 @@ export const Popover = ({
               "text-button-default-text",
               "bg-surface-background",
               "border-[1px] border-border-primary",
-              "p-2 rounded-lg shadow-lg"
+              "p-4 rounded-lg shadow-lg"
             )}
             sideOffset={1}
             align="start"

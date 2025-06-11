@@ -18,10 +18,22 @@ const SectionHeader = (props: React.ComponentProps<"div">) => {
   );
 }
 
-export const Section = (props: React.ComponentProps<"div"> & { title: string }) => {
+export const Section = (props: React.ComponentProps<"div"> & {
+  title: string;
+  helpContent?: React.ReactNode;
+}) => {
   return (
     <div className="flex flex-col gap-2 w-full">
-      <SectionHeader>{props.title}</SectionHeader>
+      <div className="flex flex-row items-center gap-2 m-0 p-0">
+        <SectionHeader>{props.title}</SectionHeader>
+        {props.helpContent && (
+          <Popover
+            icon={<HelpCircle />}
+          >
+            {props.helpContent}
+          </Popover>
+        )}
+      </div>
       {props.children}
     </div>
   );
