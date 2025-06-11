@@ -1,4 +1,4 @@
-import { Toolbar } from '../inputs';
+import { Toolbar } from '../inputs/toolbar';
 import { useAtom } from 'jotai';
 import { gamutAtom, themeAtom } from '../../store';
 import { Select } from '../inputs/select';
@@ -31,6 +31,7 @@ export const Header = () => {
               onCheckedChange={(value) => setTheme(value ? 'dark' : 'light')}
             />
             <MoonIcon className="w-4 h-4 text-text-primary" />
+            <div className='flex justify-center border border-border-primary rounded-sm w-[1.5em] h-[1.5em] text-text-tertiary text-xs align-middle'>T</div>
           </div>
         </div>
       </Toolbar>

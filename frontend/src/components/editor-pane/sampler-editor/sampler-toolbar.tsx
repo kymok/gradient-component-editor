@@ -5,7 +5,7 @@ import { ArrowUpRightFromSquare, SlidersHorizontal, XIcon } from "lucide-react";
 import { DropDownMenu } from "../../inputs/drop-down";
 import { PresetMenuItem } from "../../inputs/types";
 import { IconButton } from "../../inputs/button";
-import { Toolbar as ToolbarContainer } from "../../inputs";
+import { Toolbar as ToolbarContainer } from "../../inputs/toolbar";
 import { ParamInput } from "../../inputs/input";
 import { Checkbox } from "../../inputs/checkbox";
 import { useStore } from "jotai";
