@@ -27,7 +27,7 @@ export const lchToRgbWithGamutMapping = (
 ): [number, number, number, boolean] => {
   if (gamut === "srgb") {
     const rgb = convert([l, c, h], OKLCH, sRGB);
-    const isInGamut = isRGBInGamut(rgb); // should use linear values if to be handled correctly
+    const isInGamut = isRGBInGamut(rgb, 1e-6); // should use linear values if to be handled correctly
     const _rgb = [0, 0, 0];
     gamutMapOKLCH([l, c, h], sRGBGamut, sRGB, _rgb, MapToCuspL);
     return [_rgb[0], _rgb[1], _rgb[2], isInGamut];
