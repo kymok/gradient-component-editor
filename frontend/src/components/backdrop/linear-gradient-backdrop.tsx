@@ -15,10 +15,11 @@ export const LinearGradientBackdrop = (props: {
     canvasRef.current.width = props.direction === "horizontal" ? props.lchValues.length : 1;
     canvasRef.current.height = props.direction === "horizontal" ? 1 : props.lchValues.length;
     const ctx = canvasRef.current?.getContext("2d", { colorSpace: props.gamut });
+    // const ctx = canvasRef.current?.getContext("2d");
     if (!ctx) {
       return;
     }
-    const imageData = ctx.createImageData(canvasRef.current.width, canvasRef.current.height);
+    const imageData = ctx.createImageData(canvasRef.current.width, canvasRef.current.height, { colorSpace: props.gamut });
     const data = imageData.data;
     const lchValues = props.lchValues;
     lchValues.forEach(([l, c, h], index) => {
@@ -37,7 +38,7 @@ export const LinearGradientBackdrop = (props: {
       }
     });
     ctx.putImageData(imageData, 0, 0);
-  }, [props.gamut, props.direction, props.lchValues]);
+  }, [props.direction, props.gamut, props.lchValues]);
 
   return (<canvas
     ref={canvasRef}

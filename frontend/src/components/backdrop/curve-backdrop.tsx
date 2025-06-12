@@ -46,7 +46,7 @@ export const CurveBackdropLch = (props: {
     if (!ctx) {
       return;
     }
-    const imageData = ctx.createImageData(canvas.width, canvas.height);
+    const imageData = ctx.createImageData(canvas.width, canvas.height, { colorSpace: props.gamut });
     const data = imageData.data;
     const now = performance.now();
     for (let x = 0; x < canvas.width; x++) {
