@@ -88,8 +88,8 @@ export const SamplerDetailsTable = ({
           <tr>
             <th />
             <th>Name</th>
+            <th>Location</th>
             <th>Smooth</th>
-            <th>X</th>
             <th />
             <th />
           </tr>

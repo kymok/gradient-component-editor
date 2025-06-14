@@ -196,6 +196,7 @@ export const getGradientSwatchesAtom = atomFamily((id: string) => atom(
     const chromaPoints = get(chromaPointsAtom(id));
     const huePoints = get(huePointsAtom(id));
     const gamut = get(gamutAtom);
+    const { name } = get(paramAtomFamily(id));
 
     const evaluationResults = evaluationLocations.map((p) => {
       const l = evaluateMonotonicCurve(lightnessPoints, p.t)
@@ -231,9 +232,13 @@ export const getGradientSwatchesAtom = atomFamily((id: string) => atom(
           cssString: oklchString,
         },
         serializedColor,
+        name: p.value?.name || `t${p.t.toFixed(2)}`
       }
     });
-    return evaluationResults;
+    return ({
+      name,
+      swatches: evaluationResults
+    });
   }
 ));
 

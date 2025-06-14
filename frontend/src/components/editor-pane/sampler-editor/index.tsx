@@ -11,7 +11,7 @@ import { SamplerDetailsTable } from "./sampler-details-table";
 import { SamplerData, LinearControlPoint } from "../../../utils/linear";
 import { IconButton } from "../../inputs/button";
 import { Toolbar } from "../../inputs/toolbar";
-import { Trash2, Plus } from "lucide-react";
+import { Plus, BrushCleaning } from "lucide-react";
 
 const SAMPLER_HEIGHT = 64;
 
@@ -100,7 +100,7 @@ export const Sampler = () => {
             {/* Details Toolbar */}
             <Toolbar>
               <IconButton
-                icon={<Trash2 size={16} />}
+                icon={<BrushCleaning />}
                 label="Clear"
                 variant="danger"
                 onClick={() => setPoints([])}
@@ -108,7 +108,7 @@ export const Sampler = () => {
               />
               <div style={{ flexGrow: 1 }} />
               <IconButton
-                icon={<Plus size={16} />}
+                icon={<Plus />}
                 label="Add a point"
                 onClick={() => {
                   // Find a suitable position for the new point

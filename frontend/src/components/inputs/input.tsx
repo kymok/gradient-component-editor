@@ -8,7 +8,8 @@ export const Input = (props: React.ComponentProps<"input"> & { label?: string })
       className={cn(
         "flex items-center justify-center gap-1 text-text-secondary text-sm",
         "border px-1 py-0.5 rounded-md border-border-primary w-full leading-normal",
-        "has-[:disabled]:text-text-disabled"
+        "has-[:disabled]:text-text-disabled",
+        "bg-background"
       )}
     >
       {label}
@@ -30,7 +31,8 @@ export const ParamInput = (props: React.ComponentProps<"input"> & { label?: stri
       className={cn(
         "flex items-center justify-center gap-1 text-text-secondary text-sm",
         "border px-1 py-0.5 rounded-md border-border-primary w-fit leading-normal",
-        "has-[:disabled]:text-text-disabled"
+        "has-[:disabled]:text-text-disabled",
+        "bg-background"
       )}
     >
       {label}

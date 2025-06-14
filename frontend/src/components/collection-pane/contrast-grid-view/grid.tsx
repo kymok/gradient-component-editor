@@ -77,12 +77,12 @@ export const ContrastGridContent = (props: { id?: string }) => {
       {/* Contrast grid */}
       <div style={{
         display: 'grid',
-        gridTemplateColumns: `auto repeat(${colors.length}, 1fr)`,
+        gridTemplateColumns: `auto repeat(${colors.swatches.length}, 1fr)`,
         gap: '1px',
       }}>
         {/* Header row */}
         <div /> {/* Empty corner cell */}
-        {colors.map((color, i) => (
+        {colors.swatches.map((color, i) => (
           <div
             key={`header-${i}`}
             className="border border-border-primary-alpha"
@@ -111,7 +111,7 @@ export const ContrastGridContent = (props: { id?: string }) => {
             />
 
             {/* Contrast cells */}
-            {colors.map((colColor, j) => {
+            {colors.swatches.map((colColor, j) => {
               const ratio = getContrastRatio(
                 [rowColor.r, rowColor.g, rowColor.b],
                 [colColor.srgb.r, colColor.srgb.g, colColor.srgb.b]

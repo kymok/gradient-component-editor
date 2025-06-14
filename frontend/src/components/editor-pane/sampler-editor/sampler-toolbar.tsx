@@ -61,7 +61,7 @@ export const SamplerToolbar = ({
       <DropDownMenu
         icon={<SlidersHorizontal />}
         label="Presets..."
-        actions={presets}
+        actions={[{ items: presets }]}
         disabled={presets.length === 0}
       />
       <DropDownMenu
@@ -69,10 +69,20 @@ export const SamplerToolbar = ({
         label="Export..."
         actions={[
           {
-            name: "Copy OKLab Gradient to Clipboard",
-            action: handleGetApproximatedGradient,
-          },
+            items: [
+              {
+                name: "Copy OKLab Gradient to Clipboard",
+                action: handleGetApproximatedGradient,
+              },
+            ]
+          }
         ]}
+      />
+      <IconButton
+        type="button"
+        onClick={onToggleDetails}
+        icon={showDetails ? <ChevronUp /> : <ChevronDown />}
+        label="Show Details"
       />
       <div style={{ flexGrow: 1 }}></div>
       <IconButton
@@ -82,12 +92,6 @@ export const SamplerToolbar = ({
         icon={<XIcon />}
         label="Delete"
         variant="danger"
-      />
-      <IconButton
-        type="button"
-        onClick={onToggleDetails}
-        icon={showDetails ? <ChevronUp /> : <ChevronDown />}
-        label="Show Details"
       />
     </ToolbarContainer>
   );

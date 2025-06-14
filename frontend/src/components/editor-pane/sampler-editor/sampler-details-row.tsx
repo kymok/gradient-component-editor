@@ -60,12 +60,6 @@ export const SamplerDetailsRow = ({
           onChange={(e) => onNameChange(e.target.value)}
         />
       </td>
-      <td >
-        <Checkbox
-          checked={point.isSmooth}
-          onCheckedChange={(checked) => onSmoothChange(checked === true)}
-        />
-      </td>
       <td>
         <ParamInput
           type="number"
@@ -73,6 +67,12 @@ export const SamplerDetailsRow = ({
           value={t}
           onChange={(e) => onTChange(e.target.value)}
           disabled={point.isSmooth}
+        />
+      </td>
+      <td >
+        <Checkbox
+          checked={point.isSmooth}
+          onCheckedChange={(checked) => onSmoothChange(checked === true)}
         />
       </td>
       <td>
