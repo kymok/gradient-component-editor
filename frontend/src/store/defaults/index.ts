@@ -59,7 +59,7 @@ const defaultCyanHue = [
 
 export const defaultCyan: ShadeGeneratorParameter = {
   id: "cyan",
-  name: "Cyan",
+  name: "cyan",
   sampler: samplerTailwindish11,
   references: [],
   lightness: lightnessLinear,

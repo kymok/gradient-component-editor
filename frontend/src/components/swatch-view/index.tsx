@@ -60,6 +60,7 @@ export const SwatchView = (props: {
             <Input
               type="text"
               placeholder="Name"
+              value={param?.name || ''}
               onChange={(e) => {
                 handleNameChange(e.target.value);
               }}
