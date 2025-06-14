@@ -1,5 +1,5 @@
 import { CurveControlPoint } from "../utils/curve";
-import { LinearControlPoint } from "../utils/linear";
+import { LinearControlPoint, SamplerData } from "../utils/linear";
 import { z } from "zod";
 
 // Zod schemas
@@ -35,7 +35,7 @@ export const referenceSchema = referenceInternalSchema.extend({
 export const shadeGeneratorParameterSchema = z.object({
   id: z.string(),
   name: z.string(),
-  sampler: z.array(z.custom<LinearControlPoint<null>>()),
+  sampler: z.array(z.custom<LinearControlPoint<SamplerData>>()),
   references: z.array(referenceInternalSchema),
   lightness: z.array(z.custom<CurveControlPoint>()),
   chroma: z.array(z.custom<CurveControlPoint>()),

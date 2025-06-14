@@ -5,6 +5,10 @@ export type LinearControlPoint<T> = {
   value: T;
 }
 
+export type SamplerData = {
+  name: string;
+}
+
 export const normalizeLinearMarkerPoints = <T>(
   points: LinearControlPoint<T>[]
 ): LinearControlPoint<T>[] => {

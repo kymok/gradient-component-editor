@@ -2,7 +2,7 @@ import { Check } from "lucide-react";
 import { cn } from "../../utils/cn";
 import { Checkbox as RadixCheckbox } from "radix-ui";
 
-export const Checkbox = (props: React.ComponentProps<typeof RadixCheckbox.Root> & { label: string }) => {
+export const Checkbox = (props: React.ComponentProps<typeof RadixCheckbox.Root> & { label?: string }) => {
   return (
     <label
       className={cn(
@@ -33,7 +33,11 @@ export const Checkbox = (props: React.ComponentProps<typeof RadixCheckbox.Root> 
           </div>
         </RadixCheckbox.Indicator>
       </RadixCheckbox.Root>
-      {props.label}
+      {props.label && (props.label.length > 0) &&
+        <span className="text-text-primary">
+          {props.label}
+        </span>
+      }
     </label>
   )
 }

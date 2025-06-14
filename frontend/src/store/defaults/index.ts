@@ -1,25 +1,26 @@
 import { ShadeGeneratorParameter } from "../types";
+import { SamplerData } from "../../utils/linear";
 
 export const samplerLinear5 = [
-  { id: '000', t: 0, isSmooth: false, value: null },
-  { id: '025', t: 0.25, isSmooth: true, value: null },
-  { id: '050', t: 0.5, isSmooth: true, value: null },
-  { id: '075', t: 0.75, isSmooth: true, value: null },
-  { id: '100', t: 1, isSmooth: false, value: null },
+  { id: '000', t: 0, isSmooth: false, value: { name: '000' } as SamplerData },
+  { id: '025', t: 0.25, isSmooth: true, value: { name: '025' } as SamplerData },
+  { id: '050', t: 0.5, isSmooth: true, value: { name: '050' } as SamplerData },
+  { id: '075', t: 0.75, isSmooth: true, value: { name: '075' } as SamplerData },
+  { id: '100', t: 1, isSmooth: false, value: { name: '100' } as SamplerData },
 ];
 
 export const samplerTailwindish11 = [
-  { id: '050', t: 1 - 0.97, isSmooth: false, value: null },
-  { id: '100', t: 1 - 0.94, isSmooth: false, value: null },
-  { id: '200', t: 1 - 0., isSmooth: true, value: null },
-  { id: '300', t: 1 - 0., isSmooth: true, value: null },
-  { id: '400', t: 1 - 0., isSmooth: true, value: null },
-  { id: '500', t: 1 - 0.623, isSmooth: false, value: null },
-  { id: '600', t: 1 - 0., isSmooth: true, value: null },
-  { id: '700', t: 1 - 0., isSmooth: true, value: null },
-  { id: '800', t: 1 - 0., isSmooth: true, value: null },
-  { id: '900', t: 1 - 0.379, isSmooth: false, value: null },
-  { id: '950', t: 1 - 0.282, isSmooth: false, value: null },
+  { id: '050', t: 1 - 0.97, isSmooth: false, value: { name: '050' } as SamplerData },
+  { id: '100', t: 1 - 0.94, isSmooth: false, value: { name: '100' } as SamplerData },
+  { id: '200', t: 1 - 0., isSmooth: true, value: { name: '200' } as SamplerData },
+  { id: '300', t: 1 - 0., isSmooth: true, value: { name: '300' } as SamplerData },
+  { id: '400', t: 1 - 0., isSmooth: true, value: { name: '400' } as SamplerData },
+  { id: '500', t: 1 - 0.623, isSmooth: false, value: { name: '500' } as SamplerData },
+  { id: '600', t: 1 - 0., isSmooth: true, value: { name: '600' } as SamplerData },
+  { id: '700', t: 1 - 0., isSmooth: true, value: { name: '700' } as SamplerData },
+  { id: '800', t: 1 - 0., isSmooth: true, value: { name: '800' } as SamplerData },
+  { id: '900', t: 1 - 0.379, isSmooth: false, value: { name: '900' } as SamplerData },
+  { id: '950', t: 1 - 0.282, isSmooth: false, value: { name: '950' } as SamplerData },
 ]
 
 const lightnessLinear = [

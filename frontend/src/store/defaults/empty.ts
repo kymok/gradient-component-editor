@@ -1,11 +1,11 @@
 import { CurveControlPoint } from "../../utils/curve";
-import { LinearControlPoint } from "../../utils/linear";
+import { LinearControlPoint, SamplerData } from "../../utils/linear";
 
-export const defaultEvaluationPointsOnEmpty: LinearControlPoint<null>[] = [{
+export const defaultEvaluationPointsOnEmpty: LinearControlPoint<SamplerData>[] = [{
   id: "empty-evaluation-point",
   t: 0.5,
   isSmooth: false,
-  value: null,
+  value: { name: "" } as SamplerData,
 }];
 
 export const DefaultLightnessPointsOnEmpty: CurveControlPoint[] = [{
