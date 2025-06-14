@@ -1,5 +1,14 @@
+import React from "react";
 import { DropdownMenu as RadixDropdownMenu } from "radix-ui";
 import { cn } from "../../utils/cn";
+
+type actionSet = {
+  name?: string;
+  items: {
+    name: string;
+    action: () => void;
+  }[];
+}
 
 export const DropDownMenu = ({
   icon,
@@ -9,10 +18,7 @@ export const DropDownMenu = ({
 }: {
   icon: React.ReactNode;
   label: string;
-  actions: {
-    name: string;
-    action: () => void;
-  }[];
+  actions: actionSet[];
   disabled?: boolean;
 }) => {
   return (
@@ -49,18 +55,28 @@ export const DropDownMenu = ({
               e.preventDefault();
             }}
           >
-            {actions.map((preset) => (
-              <RadixDropdownMenu.Item
-                key={preset.name}
-                className={cn(
-                  "text-sm leading-normal px-1 py-1 rounded-sm",
-                  "hover:bg-surface-hover",
-                  "focus-visible:outline-none focus-visible:bg-surface-hover"
+            {actions.map((actionSet, setIndex) => (
+              <React.Fragment key={setIndex}>
+                {setIndex > 0 && <RadixDropdownMenu.Separator className="h-[1px] bg-border-primary my-1" />}
+                {actionSet.name && (
+                  <RadixDropdownMenu.Label className="px-1 py-1 text-xs text-text-secondary">
+                    {actionSet.name}
+                  </RadixDropdownMenu.Label>
                 )}
-                onClick={preset.action}
-              >
-                {preset.name}
-              </RadixDropdownMenu.Item>
+                {actionSet.items.map((item) => (
+                  <RadixDropdownMenu.Item
+                    key={item.name}
+                    className={cn(
+                      "text-sm leading-normal px-1 py-1 rounded-sm",
+                      "hover:bg-surface-hover",
+                      "focus-visible:outline-none focus-visible:bg-surface-hover"
+                    )}
+                    onClick={item.action}
+                  >
+                    {item.name}
+                  </RadixDropdownMenu.Item>
+                ))}
+              </React.Fragment>
             ))}
           </RadixDropdownMenu.Content>
         </RadixDropdownMenu.Portal>

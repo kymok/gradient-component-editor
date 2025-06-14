@@ -49,13 +49,13 @@ const SortableItem = ({ id }: { id: string }) => {
         ...style,
         display: 'flex',
         flexDirection: 'row',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         width: 'max-content',
       }}
     >
       <div style={{
         width: '24px',
-        height: '100%',
+        height: '64px',
         marginLeft: '-24px',
         paddingRight: '8px',
         display: 'flex',
@@ -74,7 +74,7 @@ const SortableItem = ({ id }: { id: string }) => {
         width: '512px',
         flexShrink: 0,
       }}>
-        <SwatchView id={id} />
+        <SwatchView id={id} shouldShowToolbar />
       </div>
       <div {...attributes} {...listeners} style={{
         display: 'flex',
@@ -82,7 +82,7 @@ const SortableItem = ({ id }: { id: string }) => {
         justifyContent: 'center',
         cursor: 'grab',
         width: '24px',
-        height: '24px',
+        height: '64px',
       }}>
         <ChevronsUpDown width={16} height={16} style={{ color: 'var(--color-text-primary)' }} />
       </div>
@@ -150,8 +150,8 @@ export const Collection = () => {
 
   return (
     <Section title="Swatches" helpContent={<HelpContent />}>
-      <div className={"flex flex-col gap-2"}>
-        <div className={"flex flex-col"}>
+      <div className={"flex flex-col gap-4"}>
+        <div className={"flex flex-col gap-4"}>
           <DndContext
             sensors={sensors}
             collisionDetection={closestCenter}
@@ -170,7 +170,6 @@ export const Collection = () => {
         <div style={{ width: '512px' }} >
           <Toolbar>
             <ExportColorDropDown id={activeParamId} />
-            <ExportAllDropDown />
             <div style={{ flexGrow: 1 }} />
             <IconButton
               icon={<X />}
@@ -191,105 +190,144 @@ export const Collection = () => {
   );
 }
 
-const ExportAllDropDown = () => {
-  const swatchess = useAtomValue(getAllGradientSwatchesAtom);
-  return (
-    <DropDownMenu
-      icon={<ArrowUpRightFromSquare />}
-      label="Export All..."
-      actions={[
-        {
-          name: "Copy OKLCH to Clipboard",
-          action: () => {
-            const colors = swatchess.map(
-              (swatches) => swatches.map(s => s.oklch.cssString).join('\n')
-            ).join('\n\n');
-            navigator.clipboard.writeText(colors);
-            toast.success("Copied!");
-          },
-        },
-        {
-          name: "Copy Display P3 to Clipboard",
-          action: () => {
-            const colors = swatchess.map(
-              (swatches) => swatches.map(s => s.p3.cssString).join('\n')
-            ).join('\n\n');
-            navigator.clipboard.writeText(colors);
-            toast.success("Copied!");
-          },
-        },
-        {
-          name: "Copy sRGB to Clipboard",
-          action: () => {
-            const colors = swatchess.map(
-              (swatches) => swatches.map(s => s.srgb.cssString).join('\n')
-            ).join('\n\n');
-            navigator.clipboard.writeText(colors);
-            toast.success("Copied!");
-          },
-        },
-        {
-          name: "Copy Hex to Clipboard",
-          action: () => {
-            const colors = swatchess.map(
-              (swatches) => swatches.map(s => s.srgb.hexString).join('\n')
-            ).join('\n\n');
-            navigator.clipboard.writeText(colors);
-            toast.success("Copied!");
-          },
-        },
-      ]}
-    />
-  )
+const getCssVariableString = (
+  name: string,
+  step: string,
+  color: string
+) => {
+  return `--color-${name}-${step}: ${color}`;
 }
 
 const ExportColorDropDown = (props: { id: string }) => {
-  const evaluationResults = useAtomValue(getGradientSwatchesAtom(props.id));
+  const swatches = useAtomValue(getGradientSwatchesAtom(props.id));
+  const swatchess = useAtomValue(getAllGradientSwatchesAtom);
   return (
     <DropDownMenu
       icon={<ArrowUpRightFromSquare />}
       label="Export..."
       actions={[
         {
-          name: "Copy OKLCH to Clipboard",
-          action: () => {
-            const colors = evaluationResults.map(
-              (result) => result.oklch.cssString
-            ).join('\n');
-            navigator.clipboard.writeText(colors);
-            toast.success("Copied!");
-          },
-        },
+          name: "Export Selected",
+          items: [
+            {
+              name: "Copy OKLCH to Clipboard",
+              action: () => {
+                const colors = swatches.swatches.map(
+                  (swatch) => getCssVariableString(
+                    swatches.name,
+                    swatch.name,
+                    swatch.oklch.cssString
+                  )
+                ).join('\n');
+                navigator.clipboard.writeText(colors);
+                toast.success("Copied!");
+              },
+            },
+            {
+              name: "Copy Display P3 to Clipboard",
+              action: () => {
+                const colors = swatches.swatches.map(
+                  (swatch) => getCssVariableString(
+                    swatches.name,
+                    swatch.name,
+                    swatch.p3.cssString
+                  )
+                ).join('\n');
+                navigator.clipboard.writeText(colors);
+                toast.success("Copied!");
+              },
+            },
+            {
+              name: "Copy sRGB to Clipboard",
+              action: () => {
+                const colors = swatches.swatches.map(
+                  (swatch) => getCssVariableString(
+                    swatches.name,
+                    swatch.name,
+                    swatch.srgb.cssString
+                  )
+                ).join('\n');
+                navigator.clipboard.writeText(colors);
+                toast.success("Copied!");
+              },
+            },
+            {
+              name: "Copy Hex to Clipboard",
+              action: () => {
+                const colors = swatches.swatches.map(
+                  (swatch) => getCssVariableString(
+                    swatches.name,
+                    swatch.name,
+                    swatch.srgb.hexString
+                  )
+                ).join('\n');
+                navigator.clipboard.writeText(colors);
+                toast.success("Copied!");
+              },
+            },
+          ]
+        }, 
         {
-          name: "Copy Display P3 to Clipboard",
-          action: () => {
-            const colors = evaluationResults.map(
-              (result) => result.p3.cssString
-            ).join('\n');
-            navigator.clipboard.writeText(colors);
-            toast.success("Copied!");
-          },
-        },
-        {
-          name: "Copy sRGB to Clipboard",
-          action: () => {
-            const colors = evaluationResults.map(
-              (result) => result.srgb.cssString
-            ).join('\n');
-            navigator.clipboard.writeText(colors);
-            toast.success("Copied!");
-          },
-        },
-        {
-          name: "Copy Hex to Clipboard",
-          action: () => {
-            const colors = evaluationResults.map(
-              (result) => result.srgb.hexString
-            ).join('\n');
-            navigator.clipboard.writeText(colors);
-            toast.success("Copied!");
-          },
-        },
+          name: "Export All",
+          items: [
+            {
+              name: "Copy OKLCH to Clipboard",
+              action: () => {
+                const colors = swatchess.map(
+                  (swatches) => swatches.swatches.map(swatch => getCssVariableString(
+                    swatches.name,
+                    swatch.name,
+                    swatch.oklch.cssString
+                  )).join('\n')
+                ).join('\n\n');
+                navigator.clipboard.writeText(colors);
+                toast.success("Copied!");
+              },
+            },
+            {
+              name: "Copy Display P3 to Clipboard",
+              action: () => {
+                const colors = swatchess.map(
+                  (swatches) => swatches.swatches.map(swatch => getCssVariableString(
+                    swatches.name,
+                    swatch.name,
+                    swatch.p3.cssString
+                  )).join('\n')
+                ).join('\n\n');
+                navigator.clipboard.writeText(colors);
+                toast.success("Copied!");
+              },
+            },
+            {
+              name: "Copy sRGB to Clipboard",
+              action: () => {
+                const colors = swatchess.map(
+                  (swatches) => swatches.swatches.map(swatch => getCssVariableString(
+                    swatches.name,
+                    swatch.name,
+                    swatch.srgb.cssString
+                  )).join('\n')
+                ).join('\n\n');
+                navigator.clipboard.writeText(colors);
+                toast.success("Copied!");
+              },
+            },
+            {
+              name: "Copy Hex to Clipboard",
+              action: () => {
+                const colors = swatchess.map(
+                  (swatches) => swatches.swatches.map(swatch => getCssVariableString(
+                    swatches.name,
+                    swatch.name,
+                    swatch.srgb.hexString
+                  )).join('\n')
+                ).join('\n\n');
+                navigator.clipboard.writeText(colors);
+                toast.success("Copied!");
+              },
+            },
+          ]
+        }
       ]}
     />
   )

@@ -1,7 +1,7 @@
 import { atom } from "jotai";
 import { atomFamily } from "jotai/utils";
 import { CurveControlPoint, evaluateMonotonicCurve } from "../utils/curve";
-import { normalizeLinearMarkerPoints, LinearControlPoint } from "../utils/linear";
+import { normalizeLinearMarkerPoints, LinearControlPoint, SamplerData } from "../utils/linear";
 import { defaultCyan } from "./defaults";
 import { DefaultChromaPointsOnEmpty, defaultEvaluationPointsOnEmpty, DefaultHuePointsOnEmpty, DefaultLightnessPointsOnEmpty } from "./defaults/empty";
 import { ContrastGridReferenceColor, ContrastGridReferenceColorInternal, ReferenceInternal, ShadeGeneratorParameter } from "./types";
@@ -172,7 +172,7 @@ export const evaluationLocationsAtom = atomFamily((id: string) => atom(
     const evaluated = normalizeLinearMarkerPoints(points);
     return evaluated;
   },
-  (get, set, update: SetStateAction<LinearControlPoint<null>[]>) => {
+  (get, set, update: SetStateAction<LinearControlPoint<SamplerData>[]>) => {
     const current = get(evaluationLocationsAtom(id));
     const newPoints = typeof update === "function" ? update(current) : update;
     set(paramAtomFamily(id), {
@@ -196,6 +196,7 @@ export const getGradientSwatchesAtom = atomFamily((id: string) => atom(
     const chromaPoints = get(chromaPointsAtom(id));
     const huePoints = get(huePointsAtom(id));
     const gamut = get(gamutAtom);
+    const { name } = get(paramAtomFamily(id));
 
     const evaluationResults = evaluationLocations.map((p) => {
       const l = evaluateMonotonicCurve(lightnessPoints, p.t)
@@ -231,9 +232,13 @@ export const getGradientSwatchesAtom = atomFamily((id: string) => atom(
           cssString: oklchString,
         },
         serializedColor,
+        name: p.value?.name || `t${p.t.toFixed(2)}`
       }
     });
-    return evaluationResults;
+    return ({
+      name,
+      swatches: evaluationResults
+    });
   }
 ));
 
